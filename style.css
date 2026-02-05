@@ -1,0 +1,632 @@
+/* =========================================================
+   Modern Minimal UI (CSS only) — Replace entire style.css
+   Targets existing classes in your app:
+   desc-wrap/desc-card/desc-title, upload-header/chip,
+   acc/acc-item, func-*, table-scroll, shiny inputs, cards
+   ========================================================= */
+
+/* -------------------------
+   1) Theme tokens
+------------------------- */
+:root{
+  --bg: #f7f8fb;
+  --card-bg: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --border: rgba(15, 23, 42, 0.10);
+  --border-strong: rgba(15, 23, 42, 0.14);
+  --head: #f3f4f6;
+
+  --primary: #2563eb;        /* blue */
+  --primary-weak: rgba(37, 99, 235, 0.12);
+
+  --radius: 14px;
+  --radius-sm: 10px;
+
+  --shadow-sm: 0 1px 2px rgba(2,6,23,0.06);
+  --shadow: 0 10px 30px rgba(2,6,23,0.08);
+
+  --ring: 0 0 0 4px rgba(37, 99, 235, 0.16);
+}
+
+/* -------------------------
+   2) Page / typography base
+------------------------- */
+html, body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+               Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a{ color: var(--primary); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+code, pre{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+/* Make overall spacing feel calmer */
+.container-fluid, .bslib-page-fill{
+  padding-top: 12px;
+}
+
+/* -------------------------
+   3) Cards (bslib / shiny)
+------------------------- */
+.card,
+.bslib-card,
+.bslib-card-body{
+  border-radius: var(--radius);
+}
+
+.card, .bslib-card{
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Card header modern look */
+.card-header, .bslib-card .card-header{
+  background: transparent;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* Card body spacing */
+.card-body, .bslib-card .card-body{
+  padding: 14px 16px 16px;
+}
+
+/* -------------------------
+   4) Top navigation (tabs)
+------------------------- */
+.nav-tabs{
+  border-bottom: 1px solid var(--border);
+  gap: 6px;
+}
+
+.nav-tabs .nav-link{
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--muted);
+  padding: 10px 14px;
+  transition: all .15s ease;
+}
+
+.nav-tabs .nav-link:hover{
+  background: rgba(2,6,23,0.04);
+  color: var(--text);
+}
+
+.nav-tabs .nav-link.active{
+  background: var(--card-bg);
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Your custom class big-tab */
+.big-tab{
+  font-size: 18px;
+  font-weight: 650;
+}
+.nav-link.active .big-tab{
+  color: var(--text);
+  font-weight: 750;
+}
+
+/* -------------------------
+   5) Inputs (Shiny)
+------------------------- */
+.shiny-input-container{
+  margin-bottom: 14px;
+}
+
+.shiny-input-container label{
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+/* Text / numeric / date range inputs */
+.form-control,
+.selectize-input,
+.selectize-control.single .selectize-input,
+.selectize-control.multi .selectize-input{
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: none;
+  transition: box-shadow .15s ease, border-color .15s ease, background .15s ease;
+  background: rgba(255,255,255,0.85);
+}
+
+.form-control:focus,
+.selectize-input.focus{
+  border-color: rgba(37,99,235,0.45);
+  box-shadow: var(--ring);
+  background: #fff;
+}
+
+/* Selectize dropdown */
+.selectize-dropdown{
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* File input button */
+.btn, .btn-default, .btn-primary{
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: none;
+  transition: transform .06s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.btn:hover{
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:active{
+  transform: translateY(1px);
+}
+
+/* Primary action (task button etc.) */
+.btn-primary{
+  background: var(--primary);
+  border-color: rgba(37,99,235,0.5);
+}
+.btn-primary:hover{
+  background: #1d4ed8;
+}
+
+/* -------------------------
+   6) Upload header chips
+------------------------- */
+.upload-header,
+.func-header{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 14px;
+  flex-wrap: wrap;
+}
+
+.upload-label,
+.func-label{
+  font-weight: 750;
+  color: var(--text);
+  padding-left: 2px;
+}
+
+.upload-chip,
+.func-chip{
+  background: rgba(37,99,235,0.10);
+  color: #0b1b3a;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  border: 1px solid rgba(37,99,235,0.18);
+  box-shadow: 0 1px 1px rgba(2,6,23,0.05);
+}
+
+.func-chip{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* -------------------------
+   7) describe tables layout
+------------------------- */
+.desc-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 6px;
+}
+
+.desc-card{
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 14px 16px 16px;
+  width: fit-content;
+  max-width: 96vw;
+}
+
+/* Title */
+.desc-title{
+  text-align: center;
+  font-weight: 800;
+  font-size: 15px;
+  margin: 2px 0 10px;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+
+/* pandas table */
+.desc-card table{
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* header cells */
+.desc-card thead th{
+  background: #f8fafc;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 18px;
+  text-align: center;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* body cells */
+.desc-card tbody td{
+  padding: 10px 18px;
+  text-align: center;
+  border-bottom: 1px solid rgba(15,23,42,0.07);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+/* index column */
+.desc-card tbody th{
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 800;
+  border-bottom: 1px solid rgba(15,23,42,0.07);
+  white-space: nowrap;
+  color: var(--text);
+}
+
+/* zebra + hover */
+.desc-card tbody tr:nth-child(even){
+  background: rgba(2,6,23,0.02);
+}
+.desc-card tbody tr:hover{
+  background: rgba(37,99,235,0.06);
+}
+
+/* last row no border */
+.desc-card tbody tr:last-child td,
+.desc-card tbody tr:last-child th{
+  border-bottom: none;
+}
+
+/* -------------------------
+   8) Accordion (details/summary)
+------------------------- */
+.acc{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.acc-item{
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 10px 12px;
+}
+
+/* Remove default marker, add subtle caret */
+.acc-item > summary{
+  cursor: pointer;
+  font-weight: 800;
+  list-style: none;
+  padding: 10px 8px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text);
+}
+
+.acc-item > summary::-webkit-details-marker{ display:none; }
+
+.acc-item > summary::after{
+  content: "⌄";
+  font-weight: 900;
+  color: rgba(15,23,42,0.55);
+  transform: translateY(-1px);
+  transition: transform .15s ease;
+}
+
+.acc-item[open] > summary::after{
+  transform: rotate(180deg) translateY(1px);
+}
+
+.acc-item[open] > summary{
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 10px;
+  padding-bottom: 12px;
+}
+
+/* Make inner desc-card align nicely */
+.acc-item .desc-card{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -------------------------
+   9) Function source code block
+------------------------- */
+.func-item{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.func-source{
+  background: #0b1020;
+  color: #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 12px;
+  margin-top: 8px;
+  border: 1px solid rgba(148,163,184,0.18);
+
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+
+  white-space: pre;
+  overflow-x: auto;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Nice scrollbar for code areas */
+.func-source::-webkit-scrollbar{ height: 10px; }
+.func-source::-webkit-scrollbar-track{ background: rgba(255,255,255,0.08); border-radius: 999px; }
+.func-source::-webkit-scrollbar-thumb{ background: rgba(203,213,225,0.55); border-radius: 999px; }
+.func-source::-webkit-scrollbar-thumb:hover{ background: rgba(203,213,225,0.75); }
+
+/* -------------------------
+   10) Backtest Table (table-scroll)
+------------------------- */
+.table-scroll{
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* scrollbars */
+.table-scroll::-webkit-scrollbar{ height: 10px; }
+.table-scroll::-webkit-scrollbar-track{ background: rgba(2,6,23,0.06); border-radius: 999px; }
+.table-scroll::-webkit-scrollbar-thumb{ background: rgba(100,116,139,0.45); border-radius: 999px; }
+.table-scroll::-webkit-scrollbar-thumb:hover{ background: rgba(100,116,139,0.65); }
+
+/* table */
+.table-scroll table{
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* sticky header */
+.table-scroll thead th{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f8fafc;
+  color: var(--text);
+  font-weight: 800;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* cells */
+.table-scroll tbody td,
+.table-scroll tbody th{
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(15,23,42,0.06);
+  vertical-align: middle;
+}
+
+/* first column */
+.table-scroll tbody th{
+  background: rgba(2,6,23,0.015);
+  font-weight: 800;
+  color: var(--text);
+  text-align: left;
+}
+
+/* numeric columns */
+.table-scroll tbody td{
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+/* prevent overflow */
+.table-scroll th,
+.table-scroll td{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* zebra + hover */
+.table-scroll tbody tr:nth-child(even){
+  background: rgba(2,6,23,0.02);
+}
+.table-scroll tbody tr:hover{
+  background: rgba(37,99,235,0.06);
+}
+
+/* rounded corners */
+.table-scroll thead th:first-child{ border-top-left-radius: var(--radius); }
+.table-scroll thead th:last-child{ border-top-right-radius: var(--radius); }
+.table-scroll tbody tr:last-child th:first-child{ border-bottom-left-radius: var(--radius); }
+.table-scroll tbody tr:last-child td:last-child{ border-bottom-right-radius: var(--radius); }
+
+/* optional: show full content on hover */
+.table-scroll td:hover{
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* -------------------------
+   11) Small polish for plots / outputs spacing
+------------------------- */
+.shiny-plot-output,
+.html-widget,
+.dataTables_wrapper{
+  border-radius: var(--radius);
+}
+
+/* Slightly reduce excessive margins in some outputs */
+pre, .shiny-text-output{
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+/* -------------------------
+   12) Reduce “busy” feel on small screens
+------------------------- */
+@media (max-width: 768px){
+  .nav-tabs .nav-link{ padding: 9px 12px; }
+  .desc-card thead th,
+  .desc-card tbody td{ padding: 10px 12px; }
+  .desc-card tbody th{ padding: 10px 10px; }
+}
+
+/* =========================================================
+   EXTRA POLISH (append to end of style.css)
+   - Sticky frosted top nav
+   - Card hover micro-interactions
+   ========================================================= */
+
+/* --- A) Sticky / Frosted Tabs Bar --- */
+/* Works for common Shiny layouts where .nav-tabs sits near top */
+.nav-tabs{
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  /* frosted glass */
+  background: rgba(247, 248, 251, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  padding: 10px 6px;
+  margin: 0 -6px 10px; /* extend slightly */
+  border-bottom: 1px solid rgba(15, 23, 42, 0.10);
+}
+
+/* give the whole bar a subtle "floating" edge */
+.nav-tabs::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 18px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(247,248,251,0.65), rgba(247,248,251,0));
+}
+
+/* --- B) Card Hover / Lift --- */
+.card, .bslib-card, .desc-card, .acc-item, .table-scroll{
+  transition:
+    transform .14s ease,
+    box-shadow .18s ease,
+    border-color .18s ease,
+    background .18s ease;
+  will-change: transform;
+}
+
+/* lift on hover (desktop) */
+@media (hover:hover){
+  .card:hover,
+  .bslib-card:hover,
+  .desc-card:hover,
+  .acc-item:hover,
+  .table-scroll:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(2,6,23,0.10);
+    border-color: rgba(15,23,42,0.14);
+  }
+}
+
+/* --- C) Subtle interactive feel for buttons & inputs --- */
+.btn{
+  transition: transform .06s ease, box-shadow .16s ease, filter .16s ease;
+}
+.btn:hover{ filter: brightness(0.98); }
+.btn:active{ transform: translateY(1px) scale(0.99); }
+
+/* make focus states feel consistent and premium */
+.form-control:focus,
+.selectize-input.focus,
+.btn:focus{
+  outline: none !important;
+}
+
+/* --- D) Slightly nicer global scrollbars (optional, modern) --- */
+*::-webkit-scrollbar{ height: 10px; width: 10px; }
+*::-webkit-scrollbar-track{ background: rgba(2,6,23,0.06); border-radius: 999px; }
+*::-webkit-scrollbar-thumb{ background: rgba(100,116,139,0.40); border-radius: 999px; }
+*::-webkit-scrollbar-thumb:hover{ background: rgba(100,116,139,0.60); }
+
+/* --- E) A tiny animation for accordion open --- */
+.acc-item{
+  overflow: hidden;
+}
+.acc-item > summary{
+  transition: background .15s ease;
+  border-radius: 12px;
+}
+.acc-item > summary:hover{
+  background: rgba(2,6,23,0.03);
+}
+.acc-item[open]{
+  box-shadow: 0 16px 44px rgba(2,6,23,0.10);
+}
+
+/* --- F) Keep nav links feeling "app-like" under frosted bar --- */
+.nav-tabs .nav-link{
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.nav-tabs .nav-link.active{
+  box-shadow: 0 12px 30px rgba(2,6,23,0.10);
+  border-color: rgba(15,23,42,0.12);
+}
+
+
+/* =========================================
+   MAX WIDTH LAYOUT (centered content)
+   ========================================= */
+
+/* 主体内容最大宽度 */
+.container-fluid,
+.bslib-page-fill,
+.main-container,
+#shiny-content{
+  max-width: 1200px;     /* 你可以改成 1100 / 1300 试试 */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* tab 内容区域也一起限制 */
+.tab-content{
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
